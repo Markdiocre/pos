@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductTypeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::controller(UserController::class)->prefix('user')->group(function(){
+    Route::get('/', 'get_all_users');
+    Route::get('/{id}','get_single_user');
+});
+
+// Route::controller(ProductTypeController::class)->prefix('product-type')->group(function(){
+//     Route::get('/','get_all_product_type_controller');
+//     Route::get('/{id}','get_specific_product_type');
+//     Route::post('/', 'create_product_type');
+// });
+
+Route::group(['namespace'=>"App\Http\Controllers"],function(){
+    Route::apiResource('product-type',ProductTypeController::class);
 });

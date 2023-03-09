@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('order_lists', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('product_id');
-            $table->integer('quantity');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -28,6 +25,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_list');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropForeign('orders_user_id_foreign');
+            $table->dropIndex('orders_user_id_index');
+            $table->dropColumn('user_id');
+        });
     }
 };

@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_type', function(Blueprint $table){
-            $table->id('product_type_id');
+        Schema::create('product_types', function(Blueprint $table){
+            $table->id();
             $table->string('title');
+            $table->timestamps();
         });
     }
 
