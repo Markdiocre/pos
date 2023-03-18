@@ -39,10 +39,10 @@ class ProductController extends Controller
         $product->name = $request->name;
 
         if($product->save()){
-            return response()->json(['message'=>'Successfully Inserted!'])->setStatusCode(200);
+            return response()->json(['message'=>'Successfully updated!'])->setStatusCode(200);
         }
 
-        return response()->json(['message'=>'Error, cannot add Product'])->setStatusCode(400);
+        return response()->json(['message'=>'Error, cannot update Product'])->setStatusCode(400);
     }
 
     public function destroy($id){
@@ -51,6 +51,6 @@ class ProductController extends Controller
             return response()->json(['message'=>'Successfully Deleted!'])->setStatusCode(200);
         }
 
-        return response()->json(['message'=>'Error, cannot delete Product Type'])->setStatusCode(400);
+        return response()->json(['message'=>'Error, cannot delete Product'])->setStatusCode(400);
     }
 }

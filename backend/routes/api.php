@@ -1,10 +1,8 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductTypeController;
-use App\Http\Controllers\UserController;
-use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,13 +21,16 @@ use Illuminate\Support\Facades\Route;
 //     Route::get('/{id}','get_single_user');
 // });
 
-// Route::controller(ProductTypeController::class)->prefix('product-type')->group(function(){
-//     Route::get('/','get_all_product_type_controller');
-//     Route::get('/{id}','get_specific_product_type');
-//     Route::post('/', 'create_product_type');
-// });
+Route::controller(OrderController::class)->prefix('order')->group(function(){
+    Route::get('/','get_all');
+    Route::get('/{id}','get_specific');
+    Route::post('/', 'create_new');
+    Route::put('/{id}','update_order');
+    Route::delete('/{id}','delete_order');
+});
 
 Route::group(['namespace'=>"App\Http\Controllers"],function(){
     Route::apiResource('product-type',ProductTypeController::class);
     Route::apiResource('product', ProductController::class);
+    Route::apiResource('order', OrderController::class);
 });
