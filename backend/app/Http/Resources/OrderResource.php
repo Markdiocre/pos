@@ -16,16 +16,12 @@ class OrderResource extends JsonResource
     {
         return [
             "orderId" => $this->id,
-            "user" => [
-                "userId" => $this->user->id,
-                "firstName" => $this->user->first_name,
-                "lastName" => $this->user->last_name,
-                "status" => $this->user->status == 'A' ? 'Admin' : 'Employee'
-            ],
+            "user" => new UserResource($this->user),
             "customerName" => $this->customer_name,
             "orderStatus" => $this->order_status,
             "orderedAt" => $this->ordered_at,
             "orderCode" => $this->order_code,
+            "orderList"=>new OrderListResource($this->order_list)
         ];
     }
 }

@@ -21,16 +21,9 @@ use Illuminate\Support\Facades\Route;
 //     Route::get('/{id}','get_single_user');
 // });
 
-Route::controller(OrderController::class)->prefix('order')->group(function(){
-    Route::get('/','get_all');
-    Route::get('/{id}','get_specific');
-    Route::post('/', 'create_new');
-    Route::put('/{id}','update_order');
-    Route::delete('/{id}','delete_order');
-});
-
 Route::group(['namespace'=>"App\Http\Controllers"],function(){
     Route::apiResource('product-type',ProductTypeController::class);
     Route::apiResource('product', ProductController::class);
     Route::apiResource('order', OrderController::class);
+    Route::apiResource('order-list', OrderListController::class);
 });

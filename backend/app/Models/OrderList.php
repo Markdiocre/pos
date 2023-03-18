@@ -9,7 +9,13 @@ class OrderList extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function order(){
-        return $this->hasOne(Order::class);
+        return $this->belongsTo(Order::class);
+    }
+
+    public function product(){
+        return $this->belongsTo(Product::class);
     }
 }

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Resources\OrderCollection;
 use App\Http\Resources\OrderResource;
 use App\Models\Order;
+use App\Models\OrderList;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -15,7 +17,8 @@ class OrderController extends Controller
     }
 
     public function show($id){
-        return new OrderResource(Order::all()->where('id','=',$id)->first());
+        $orders = Order::all()->where('id','=',$id)->first();
+        return new OrderResource($orders);
     }
 
     public function store(Request $request){
