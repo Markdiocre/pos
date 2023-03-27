@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductTypeController;
@@ -16,12 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::controller(UserController::class)->prefix('user')->group(function(){
-//     Route::get('/', 'get_all_users');
-//     Route::get('/{id}','get_single_user');
-// });
+Route::post('/login', [LoginController::class,'login']);
+Route::post('/logout', [LoginController::class,'logout'])->middleware('auth:sanctum');
 
-Route::group(['namespace'=>"App\Http\Controllers"],function(){
+Route::group(['namespace'=>"App\Http\Controllers",'middleware'=>'auth:sanctum'],function(){
     Route::apiResource('product-type',ProductTypeController::class);
     Route::apiResource('product', ProductController::class);
     Route::apiResource('order', OrderController::class);

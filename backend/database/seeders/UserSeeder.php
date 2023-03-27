@@ -23,15 +23,13 @@ class UserSeeder extends Seeder
             'last_name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin'), // password
-            'remember_token' => Str::random(10),
-            'status' => 'A'
+            'status' => 'Admin'
         ], [
             'first_name' => 'Mark Thaddeus',
             'last_name' => 'Manuel',
             'email' => 'markmanu06@gmail.com',
             'password' => Hash::make('manuel'), // password
-            'remember_token' => Str::random(10),
-            'status' => 'E'
+            'status' => 'Employee'
         ]];
 
         DB::table('users')->insert($users);

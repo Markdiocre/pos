@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->char('status');
+            $table->set('status',['Admin','Employee']);
             $table->rememberToken();
             $table->timestamps();
         });
